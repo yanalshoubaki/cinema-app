@@ -1,8 +1,16 @@
+import Layout from "@/components/Layout";
+import Providers from "@/providers/Providers";
+import clsx from "clsx";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ViewTransitions } from "next-view-transitions";
+import { Gabarito } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const gabarito = Gabarito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={clsx(gabarito.className)}>
+          <Providers>
+            <Layout>{children}</Layout>
+          </Providers>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

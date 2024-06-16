@@ -9,18 +9,41 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "@nextui-org/react": "^2.4.1",
+    "@tanstack/react-query": "^5.45.0",
+    "@tanstack/react-query-devtools": "^5.45.0",
+    "axios": "^1.7.2",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "framer-motion": "^11.2.10",
+    "lodash": "^4.17.21",
+    "next": "14.2.4",
+    "next-view-transitions": "^0.2.0",
+    "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.4"
+    "react-hook-form": "^7.52.0",
+    "swiper": "^11.1.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.13",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.4"
+    "eslint-config-next": "14.2.4",
+    "postcss": "^8",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.6.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
