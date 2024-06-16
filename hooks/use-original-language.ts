@@ -10,7 +10,7 @@ const useLanguages = (filter: Record<string, string>) => {
                 const response = await client().get<Response>(`/languages`)
                 return response.data
             } catch (error) {
-                throw new Error(error)
+                console.warn(error)
             }
         },
     })

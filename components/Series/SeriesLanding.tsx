@@ -8,9 +8,7 @@ import NextImage from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useMemo, useState } from "react";
 
-type SeriesLandingProps = {};
-
-const SeriesLanding = (props: SeriesLandingProps) => {
+const SeriesLanding = () => {
   const pathname = usePathname();
   const seriesId = pathname.split("/")[2];
   const { data: series, isLoading } = useSeriesById(seriesId);
@@ -33,7 +31,7 @@ const SeriesLanding = (props: SeriesLandingProps) => {
           ...season,
         };
       });
-  }, [series?.seasons]);
+  }, [series, isLoading]);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -146,7 +144,11 @@ const SeriesLanding = (props: SeriesLandingProps) => {
             <div className="grid grid-cols-12 gap-10 w-full">
               {isSeasonLoading
                 ? new Array(12).fill(0).map((_, index) => (
-                    <Card className="col-span-4 bg-transparent space-y-3" key={index} radius="none">
+                    <Card
+                      className="col-span-4 bg-transparent space-y-3"
+                      key={index}
+                      radius="none"
+                    >
                       <Skeleton className="rounded-lg">
                         <div className="h-[225px] rounded-lg bg-default-300"></div>
                       </Skeleton>

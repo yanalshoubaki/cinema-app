@@ -15,7 +15,7 @@ const useTv = (filter: Record<string, unknown>) => {
                 })
                 return response.data
             } catch (error) {
-                throw new Error(error)
+                console.warn(error)
             }
         },
         refetchInterval: false,

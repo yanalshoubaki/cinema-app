@@ -14,7 +14,7 @@ const useSeriesById = (id: string) => {
         });
         return response.data;
       } catch (error) {
-        throw new Error(error);
+        console.warn(error);
       }
     },
     refetchInterval: false,

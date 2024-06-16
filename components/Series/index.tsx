@@ -1,10 +1,8 @@
 import { SeriesResult } from "@/types";
 import { Card, CardBody, Image as NextUIImage } from "@nextui-org/react";
 import { format } from "date-fns";
-import { filter } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 type SeriesDetailsProps = {
   series: SeriesResult;
@@ -12,45 +10,6 @@ type SeriesDetailsProps = {
 
 const SeriesDetails = ({ series }: SeriesDetailsProps) => {
   const baseImageURL = "https://image.tmdb.org/t/p/original";
-  const [isFav, setIsFav] = useState(false);
-  const checkIfInFav = () => {
-    const fav = localStorage.getItem("fav");
-    if (fav) {
-      const favSeriess = JSON.parse(fav);
-      const check = filter(favSeriess, (row) => row.id == series.id);
-      if (check.length > 0) {
-        setIsFav(true);
-      }
-    } else {
-      return false;
-    }
-  };
-
-  const addToFav = () => {
-    const fav = localStorage.getItem("fav");
-    if (fav) {
-      const favSeriess: SeriesResult[] = JSON.parse(fav);
-      const check = filter(favSeriess, (row) => row.id == series.id);
-      if (check.length > 0) {
-        const seriess = filter(favSeriess, (row) => row.id != series.id);
-        localStorage.setItem("fav", JSON.stringify(seriess));
-        setIsFav(false);
-      } else {
-        favSeriess.push(series);
-        localStorage.setItem("fav", JSON.stringify(favSeriess));
-        setIsFav(true);
-      }
-    } else {
-      const seriess = [series];
-      localStorage.setItem("fav", JSON.stringify(seriess));
-      setIsFav(true);
-    }
-  };
-
-  useEffect(() => {
-    checkIfInFav();
-  }, []);
-
   return (
     <Link href={`/series/${series.id}`} className="w-full flex-1 h-full">
       <Card className="overflow-visible h-full bg-transparent shadow-none rounded-none p-0">

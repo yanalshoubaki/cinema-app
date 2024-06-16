@@ -14,7 +14,7 @@ const useGenre = (type: "movie" | "tv") => {
                 }>(`/genre/${type}/list`)
                 return response.data
             } catch (error) {
-                throw new Error(error)
+                console.warn(error)
             }
         },
     })

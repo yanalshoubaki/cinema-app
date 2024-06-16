@@ -1,5 +1,5 @@
 import client from "@/services/client"
-import { MovieEntity, MovieResponse, MovieResult } from "@/types"
+import { MovieEntity } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 
 const useMovie = (id: number) => {
@@ -10,7 +10,7 @@ const useMovie = (id: number) => {
                 const response = await client().get<MovieEntity>(`/movie/${id}`)
                 return response.data
             } catch (error) {
-                throw new Error(error)
+                console.warn(error)
             }
         },
     })

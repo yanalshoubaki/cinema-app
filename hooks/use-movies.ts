@@ -1,5 +1,5 @@
 import client from "@/services/client"
-import { MovieResponse, MovieResult } from "@/types"
+import { MovieResult, Response } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 
 const useMovies = (filter: Record<string, string>) => {
@@ -7,12 +7,12 @@ const useMovies = (filter: Record<string, string>) => {
         queryKey: ["movies", filter],
         queryFn: async () => {
             try {
-                const response = await client().get<MovieResponse<MovieResult[]>>(`/discover/movie`, {
+                const response = await client().get<Response<MovieResult[]>>(`/discover/movie`, {
                     params: filter
                 })
                 return response.data
             } catch (error) {
-                throw new Error(error)
+                console.warn(error)
             }
         },
     })

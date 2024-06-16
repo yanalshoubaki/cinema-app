@@ -6,7 +6,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
         const data = await res.data
         return Response.json(data)
     } catch (error) {
-        console.log(error);
-        return Response.error(error)
+        return Response.json(error, {
+            status: 500
+        })
     }
 }
