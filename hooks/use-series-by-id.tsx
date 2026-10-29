@@ -6,16 +6,12 @@ const useSeriesById = (id: string) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["series", id],
     queryFn: async () => {
-      try {
-        const response = await client().get<SeriesEntity>(`/series/${id}`, {
-          headers: {
-            "Cache-Control": "no-store",
-          },
-        });
-        return response.data;
-      } catch (error) {
-        console.warn(error);
-      }
+      const response = await client().get<SeriesEntity>(`/series/${id}`, {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      });
+      return response.data;
     },
     refetchInterval: false,
     retry: 0,

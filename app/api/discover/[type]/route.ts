@@ -1,7 +1,7 @@
 import server from "@/services/server"
 
 export const revalidate = 0;
-export async function GET(request: Request, { params: requestParam }: { params: { type: string } }) {
+export async function GET(request: Request, { params: requestParam }: { params: Promise<{ type: string }> }) {
     try {
         const urlParams = request.url.split("?").length > 0 ? new URLSearchParams(request.url.split("?")[1]) : new URLSearchParams({})
 
@@ -10,7 +10,7 @@ export async function GET(request: Request, { params: requestParam }: { params: 
             paramsObject[key as string] = value
         }
 
-        const res = await server().get(`/discover/${requestParam.type}`, {
+        const res = await server().get(`/discover/${(await requestParam).type}`, {
             params: {
                 ...paramsObject,
                 api_key: process.env.API_KEY,

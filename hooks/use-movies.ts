@@ -6,14 +6,10 @@ const useMovies = (filter: Record<string, string>) => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["movies", filter],
         queryFn: async () => {
-            try {
-                const response = await client().get<Response<MovieResult[]>>(`/discover/movie`, {
-                    params: filter
-                })
-                return response.data
-            } catch (error) {
-                console.warn(error)
-            }
+            const response = await client().get<Response<MovieResult[]>>(`/discover/movie`, {
+                params: filter
+            })
+            return response.data
         },
     })
     return {

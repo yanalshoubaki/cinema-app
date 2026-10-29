@@ -3,28 +3,27 @@ import { SeriesSeasonEntity } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 const useSeriesSeasonByNumber = (id: number, season_number: number) => {
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["series-season", id, season_number],
-        queryFn: async () => {
-            try {
-                const response = await client().get<SeriesSeasonEntity>(`/series/${id}/season/${season_number}`, {
-                    headers: {
-                        "Cache-Control": "no-store",
-                    },
-                });
-                return response.data;
-            } catch (error) {
-                console.warn(error);
-            }
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["series-season", id, season_number],
+    queryFn: async () => {
+      const response = await client().get<SeriesSeasonEntity>(
+        `/series/${id}/season/${season_number}`,
+        {
+          headers: {
+            "Cache-Control": "no-store",
+          },
         },
-        refetchInterval: false,
-        retry: 0,
-    });
-    return {
-        data,
-        isLoading,
-        isError,
-    };
+      );
+      return response.data;
+    },
+    refetchInterval: false,
+    retry: 0,
+  });
+  return {
+    data,
+    isLoading,
+    isError,
+  };
 };
 
 export default useSeriesSeasonByNumber;

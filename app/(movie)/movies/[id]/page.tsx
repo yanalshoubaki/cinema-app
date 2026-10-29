@@ -1,9 +1,8 @@
-import React from "react";
+import MovieLanding from "@/components/Movies/MovieLanding";
 
-type Props = {};
-
-const page = (props: Props) => {
-  return <div>page</div>;
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  return <MovieLanding id={Number(id)} />;
 };
 
 export default page;

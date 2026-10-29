@@ -6,17 +6,13 @@ const useTv = (filter: Record<string, unknown>) => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["tv", filter],
         queryFn: async () => {
-            try {
-                const response = await client().get<Response<SeriesResult[]>>(`/discover/tv`, {
-                    params: filter,
-                    headers: {
-                        "Cache-Control": "no-store"
-                    }
-                })
-                return response.data
-            } catch (error) {
-                console.warn(error)
-            }
+            const response = await client().get<Response<SeriesResult[]>>(`/discover/tv`, {
+                params: filter,
+                headers: {
+                    "Cache-Control": "no-store"
+                }
+            })
+            return response.data
         },
         refetchInterval: false,
         retry: 0

@@ -1,9 +1,10 @@
 import server from "@/services/server"
 export const dynamic = 'force-dynamic' // defaults to auto
-export async function GET(request: Request, { params }: { params: { id: string; season_number: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string; season_number: string }> }) {
     try {
+        const { id, season_number } = await params
         const requestParams = request.url.split("?").length > 0 ? new URLSearchParams(request.url.split("?")[1]) : new URLSearchParams({})
-        const res = await server().get(`/tv/${params.id}/season/${params.season_number}`, {
+        const res = await server().get(`/tv/${id}/season/${season_number}`, {
             headers: {
                 "Cache-Control": "no-store"
             },

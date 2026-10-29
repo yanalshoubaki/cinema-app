@@ -6,12 +6,8 @@ const useMovie = (id: number) => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["movie", id],
         queryFn: async () => {
-            try {
-                const response = await client().get<MovieEntity>(`/movie/${id}`)
-                return response.data
-            } catch (error) {
-                console.warn(error)
-            }
+            const response = await client().get<MovieEntity>(`/movie/${id}`)
+            return response.data
         },
     })
     return {

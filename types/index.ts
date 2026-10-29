@@ -93,6 +93,8 @@ export type MovieEntity = {
   video: boolean
   vote_average: number
   vote_count: number
+  credits: Credits
+  videos: Videos
 }
 
 
